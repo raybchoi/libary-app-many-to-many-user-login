@@ -1,0 +1,12 @@
+
+<h1>Library (Libraries#Index)</h1>
+<hr>
+<% @libraries.each { |library| %>
+  <p>Name of Library: <%= library.name %></p>
+  <p>Number of floors: <%= library.floor_count %></p>
+  <p>Library floor area: <%= library.floor_area %></p>
+  <!-- if a user is logged in, show them a button that allows them to join the library -->
+  <% if current_user %>
+    <%= button_to "Join", library_users_path(library) %>
+  <% end %>
+<% } %>

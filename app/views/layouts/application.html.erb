@@ -9,6 +9,27 @@
   </head>
 
   <body>
+
+
+    <!-- This is a list that says: if user is logged in then show Profile / Log Out link, otherwise show up "Create Accountant / Log In" -->
+    <ul>
+      <!-- anything in the helpers fille can be accessed ANYWHERE in rails -->
+      <% if current_user %>
+        <li><%= link_to "Profile", user_path(current_user) %></li>
+        <li><%= link_to "Log Out", logout_path(current_user) %></li>
+      <% else %>
+        <li><%= link_to "Create Account", new_user_path %></li>
+        <li><%= link_to "Log In", login_path %> </li>
+      <% end %>
+    </ul>
+    <!-- example - there is a hellos method in the sessions_helper that says "WHAT" so this brings back "WHAT" -->
+    <%= hello %>
+
+    <% flash.each do |name, msg| %>
+      <p>
+        <small> <%= name.capitalize %>: <%= msg %> </small>
+      </p>
+    <% end %>
     <%= yield %>
   </body>
 </html>
